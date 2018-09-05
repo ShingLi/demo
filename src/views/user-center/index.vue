@@ -42,7 +42,7 @@
             <ul>
                 <template v-for='(item,index) in featuers'>
                     <li class="module" :key='index'>
-                        <router-link tag='div' :to='`/userCenter${item.url}`'>
+                        <router-link tag='div' :to='`${item.url}`'>
                             <i class="iconfont" :class="item.icon"></i>
                             <!-- badge -->
                             <b class="badge" v-if='index === 1'></b>
@@ -91,7 +91,7 @@
                 {
                     icon: 'icon-xiaoxi',
                     text: '我的消息',
-                    url: ''
+                    url: '/message'
                 },
                 {
                     icon: 'icon-zanwutixianjilu',
@@ -135,6 +135,7 @@
     @import '~styles/variables.scss';
     .userCenterWrapper{
         width: 100%;
+        padding-bottom: 2.5rem;
         min-height: calc(100vh);
         background-color: $color-background-d;
         .bg{
@@ -263,6 +264,7 @@
         .footer{
             display: flex;
             position: fixed;
+            height: 2.5rem;
             left: 0;
             width: 100%;
             bottom: 0;

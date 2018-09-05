@@ -1,6 +1,6 @@
 <template>
     <div class="header_wrapper">
-        <div class="back" @click='$router.go(-1)'>
+        <div class="back" @click='back'>
             <slot name='back'></slot>
             <span class="text" v-text='text'></span>
         </div>
@@ -21,6 +21,12 @@
             title: {
                 type: String,
                 default: ''
+            }
+        },
+        methods: {
+            back () {
+                // 基础组件 不应该有耦合度，它不应该关心业务逻辑，只派发事件
+                this.$emit('back')
             }
         }
     }

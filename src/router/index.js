@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import userCenter from 'views/user-center'
-import collect from 'views/collect'
 Vue.use(Router)
 
 const routes = [
@@ -13,15 +12,18 @@ const routes = [
     },
     {
         path: '/userCenter',
-        // name: 'userCenter',
-        component: userCenter,
-        children: [
-            {
-                path: '/collect',
-                name: 'collect',
-                component: collect
-            }
-        ]
+        name: 'userCenter',
+        component: userCenter
+    },
+    {
+        path: '/collect',
+        name: 'collect',
+        component: () => import('views/collect')
+    },
+    {
+        path: '/message',
+        name: 'message',
+        component: () => import('views/message')
     }
 ]
 export default new Router({

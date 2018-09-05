@@ -1,7 +1,7 @@
 <template>
-    <transition name='slide'>
+    <transition name='slide' mode='in-out'>
         <div class="collect-wrapper">
-            <v-header title='我的收藏' text='返回'>
+            <v-header title='我的收藏' text='返回' @back='back'>
                 <i class="iconfont icon-jiantouzuo" slot='back'></i>
             </v-header>
             <!-- search -->
@@ -73,6 +73,10 @@
             Tag
         },
         methods: {
+            back () {
+                // f返回
+                this.$router.go(-1)
+            },
             delCollect () {
                 // 删除设备
                 Dialog.confirm({
@@ -90,7 +94,12 @@
 <style lang="scss" scoped>
     @import '~styles/variables.scss';
     .collect-wrapper{
-        min-height: calc(100vh);
+        position: fixed;
+        top:0;
+        left: 0;
+        bottom:0;
+        width: 100%;
+        // min-height: calc(100vh);
         background-color: $color-background-d;
         .search{
             &-wrapper{
