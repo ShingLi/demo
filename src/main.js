@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 
 import 'styles/index.scss'
-
+import 'assets/js/rem'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
