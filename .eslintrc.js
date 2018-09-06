@@ -30,7 +30,8 @@ module.exports = {
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
       'indent': 'off',
       'vue/script-indent': ['error',4,{'baseIndent': 1}],
-      'prefer-promise-reject-errors': ["error", {"allowEmptyReject": true}]
+      'prefer-promise-reject-errors': ["error", {"allowEmptyReject": true}],
+      "no-tabs":"off"
       
     }
   }

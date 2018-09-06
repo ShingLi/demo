@@ -8,3 +8,14 @@ $color-text-d:#808080;
 $color-background:#40e399;
 $color-background-d:#F0F2F0;
 $color-background-line:linear-gradient(#40e399, #26bfb7);
+
+// 样式
+@mixin fixed {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    bottom:0;
+    background-color: $color-background-d;
+    z-index: 99;
+}

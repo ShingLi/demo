@@ -48,11 +48,11 @@
             align-items: center;
             font-size: 0;
             .iconfont {
-                font-size: 1rem;
+                font-size: .8rem;
                 color: $color-text;
             }
             .text{
-                font-size: 1rem;
+                font-size: .8rem;
                 color: $color-text;
             }
         }
@@ -66,7 +66,7 @@
         .right{
             i{
                 color: $color-text;
-                 font-size: 1rem;
+                font-size: 1rem;
             }
         }
     }

@@ -23,7 +23,31 @@ const routes = [
     {
         path: '/message',
         name: 'message',
-        component: () => import('views/message')
+        component: () => import('views/message'),
+        children: [
+            {
+                path: ':id',
+                name: 'msg-detail',
+                component: () => import('views/message/msg-detail')
+            }
+        ]
+    },
+    {
+        path: '/recharge',
+        name: 'recharge',
+        component: () => import('views/recharge'),
+        children: [
+            {
+                path: ':id',
+                name: 'recharge-detail',
+                component: () => import('views/recharge/push-detail')
+            }
+        ]
+    },
+    {
+        path: '/consume',
+        name: 'consume',
+        component: () => import('views/consume')
     }
 ]
 export default new Router({

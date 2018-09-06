@@ -96,12 +96,12 @@
                 {
                     icon: 'icon-zanwutixianjilu',
                     text: '充值记录',
-                    url: ''
+                    url: '/recharge'
                 },
                 {
                     icon: 'icon-jizhangben',
-                    text: '消费几率',
-                    url: ''
+                    text: '消费记录',
+                    url: '/consume'
                 },
                 {
                     icon: 'icon-shezhi',

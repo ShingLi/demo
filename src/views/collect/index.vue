@@ -50,16 +50,14 @@
                 </div>
             </div>
             <!-- 没有数据的显示 -->
-            <div class="nodata" v-else>
-                <img src='../../assets/images/noData.png'>
-                <p>您还没有收藏任何设备</p>
-            </div>
+            <no-data data='您还没有收藏任何设备'></no-data>
         </div>
     </transition>
 </template>
 <script>
     import vHeader from 'components/header'
     import Tag from 'components/tag'
+    import NoData from 'components/no-data'
     import { Dialog } from 'vant'
     export default {
         name: 'collect',
@@ -70,7 +68,8 @@
         },
         components: {
             vHeader,
-            Tag
+            Tag,
+            NoData
         },
         methods: {
             back () {
@@ -198,19 +197,6 @@
                         font-size: .7rem;
                     }
                 }
-            }
-        }
-        .nodata{
-            text-align: center;
-            width: 100%;
-            padding: 2rem 1rem 0;
-            img{
-                 width: 80%;
-            }
-            p{
-               font-size: .9rem;
-                color: #e1523f;
-                margin-top: -.5rem;
             }
         }
     }
