@@ -3,11 +3,11 @@
         <div class="consume-wrapper">
             <v-header title='消费记录' text='返回' @back='back'>
                 <i class="iconfont icon-jiantouzuo" slot='back'></i>
-                <i class="iconfont icon-calendar_icon" slot ='right'></i>
+                <i class="iconfont icon-calendar_icon" slot ='right' @click ='isShowPopup'></i>
             </v-header>
             <scroll class="scroll">
                 <ul class="list">
-                    <li class="list-item" v-for='n in 20'>
+                    <li class="list-item" v-for='(n,index) in 20' :key='index'>
                         <div class="title">
                             <h3>洗车记录</h3>
                             <span>￥0.01</span>
@@ -31,6 +31,17 @@
                     </li>
                 </ul>
             </scroll>
+            <!-- 日期选择 -->
+            <popup v-model='isPopup' position='bottom'>
+                <datetime-picker
+                    type='year-month'
+                    v-model="currentDate"
+                    :formatter="formatter"
+                    @cancel='cancel'
+                    @confirm='Confirm'
+                >
+                </datetime-picker>
+            </popup>
             <!-- 没有数据 -->
             <no-data data='您暂时没有任何消费记录！' v-if='false'></no-data>
         </div>
@@ -40,16 +51,51 @@
     import vHeader from 'components/header'
     import Scroll from 'components/scroll/scroll'
     import NoData from 'components/no-data'
+    import {SwipeCell, Popup, DatetimePicker} from 'vant'
     export default {
-        name: 'consume',
+        name: 'consume-record',
+        data () {
+            return {
+                isPopup: false,
+                currentDate: new Date()
+            }
+        },
         components: {
             vHeader,
             Scroll,
-            NoData
+            NoData,
+            SwipeCell,
+            Popup,
+            DatetimePicker
         },
         methods: {
             back () {
                 this.$router.go(-1)
+            },
+            isShowPopup () {
+                this.isPopup = !this.isPopup
+            },
+            cancel () {
+                // alert(1)
+                this.isShowPopup()
+            },
+            Confirm (val) {
+                // 时间确定
+                console.log(val)
+            },
+            formatter (type, value) {
+                if (type === 'year') {
+                    return `${value}年`
+                } else if (type === 'month') {
+                    return `${value}月`
+                }
+                return value
+            },
+            msgDetail (id) {
+                // 子路由
+                this.$router.push({
+                    path: `/message/${id}`
+                })
             }
         }
     }

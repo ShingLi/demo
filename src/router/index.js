@@ -11,6 +11,17 @@ const routes = [
         }
     },
     {
+        path: '/balance',
+        name: 'balance',
+        component: () => import('views/balance')
+    },
+    {
+        path: '/recharge',
+        name: 'recharge',
+        component: () => import('views/recharge')
+    },
+    // 功能模块路由
+    {
         path: '/userCenter',
         name: 'userCenter',
         component: userCenter
@@ -33,21 +44,31 @@ const routes = [
         ]
     },
     {
-        path: '/recharge',
-        name: 'recharge',
-        component: () => import('views/recharge'),
+        path: '/recharge-record',
+        name: 'recharge-record',
+        component: () => import('views/recharge-record'),
         children: [
             {
                 path: ':id',
                 name: 'recharge-detail',
-                component: () => import('views/recharge/push-detail')
+                component: () => import('views/recharge-record/push-detail')
             }
         ]
     },
     {
-        path: '/consume',
-        name: 'consume',
-        component: () => import('views/consume')
+        path: '/consume-record',
+        name: 'consume-record',
+        component: () => import('views/consume-record')
+    },
+    {
+        path: '/feedback',
+        name: 'feedback',
+        component: () => import('views/feedback')
+    },
+    {
+        path: '/tobuy',
+        name: 'tobuy',
+        component: () => import('views/to-buy')
     }
 ]
 export default new Router({

@@ -5,7 +5,7 @@
                 <i class="iconfont icon-jiantouzuo" slot='back'></i>
             </v-header>
             <!-- search -->
-            <div v-if='false'>
+            <div>
                 <div class="search-wrapper">
                 <input type="text"
                     class="search-box"
@@ -13,7 +13,7 @@
                     :model='query'>
                 </div>
                 <!-- tag -->
-                <tag icon='icon-dianping'></tag>
+                <tag icon='icon-dianping' text='我的充电站'></tag>
                 <!-- 充电站列表 -->
                 <div class="device-list">
                     <ul>
@@ -50,7 +50,7 @@
                 </div>
             </div>
             <!-- 没有数据的显示 -->
-            <no-data data='您还没有收藏任何设备'></no-data>
+            <no-data data='您还没有收藏任何设备' v-if='false'></no-data>
         </div>
     </transition>
 </template>
@@ -111,6 +111,7 @@
             &-box{
                 width: 100%;
                 height: 1.3rem;
+                line-height: 1.3rem;
                 text-align: center;
                 background-color: #e6e6e6;
                 font-size: .6rem;

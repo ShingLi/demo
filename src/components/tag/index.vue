@@ -2,7 +2,7 @@
     <div class="tag-wrapper">
         <p class="tag">
             <i class="iconfont" :class="icon"></i>
-            <span class='text'>常用功能</span>
+            <span class='text'>{{text}}</span>
         </p>
     </div>
 </template>
@@ -11,6 +11,10 @@
         name: 'tag',
         props: {
             icon: {
+                type: String,
+                default: ''
+            },
+            text: {
                 type: String,
                 default: ''
             }

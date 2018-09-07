@@ -18,7 +18,7 @@
                             <i class="iconfont icon-saoma"></i>
                             <p class="text">扫一扫</p>
                         </li>
-                        <li class='item'>
+                        <li class='item' @click="$router.push({path: '/balance'})">
                             <i class="iconfont icon-yue"></i>
                             <p class="text">余额</p>
                             <p class='money'>￥191111</p>
@@ -37,12 +37,12 @@
         </div>
          <!-- 功能模块 -->
         <div class="featuers-wrapper">
-            <tag icon='icon-gongneng'></tag>
+            <tag icon='icon-gongneng' text='常用功能'></tag>
             <!-- 实际的功能模块 -->
             <ul>
                 <template v-for='(item,index) in featuers'>
-                    <li class="module" :key='index'>
-                        <router-link tag='div' :to='`${item.url}`'>
+                    <li class="module" :key='index' @click='href(index)'>
+                        <router-link :to='`${item.url}`' class="_a">
                             <i class="iconfont" :class="item.icon"></i>
                             <!-- badge -->
                             <b class="badge" v-if='index === 1'></b>
@@ -96,22 +96,22 @@
                 {
                     icon: 'icon-zanwutixianjilu',
                     text: '充值记录',
-                    url: '/recharge'
+                    url: '/recharge-record'
                 },
                 {
                     icon: 'icon-jizhangben',
                     text: '消费记录',
-                    url: '/consume'
+                    url: '/consume-record'
                 },
                 {
                     icon: 'icon-shezhi',
                     text: '故障保修',
-                    url: ''
+                    url: '/feedback'
                 },
                 {
                     icon: 'icon-namai',
                     text: '我要购买',
-                    url: ''
+                    url: '/tobuy'
                 },
                 {
                     icon: 'icon-wodekefu',
@@ -128,6 +128,13 @@
         components: {
             vHeader,
             Tag
+        },
+        methods: {
+            href (index) {
+                if (index === 6) {
+                    window.location.href = 'tel:18955310567'
+                }
+            }
         }
     }
 </script>
@@ -138,6 +145,9 @@
         padding-bottom: 2.5rem;
         min-height: calc(100vh);
         background-color: $color-background-d;
+        ._a{
+            display: block;
+        }
         .bg{
             background: $color-background-line;
             .v-header{
@@ -255,7 +265,7 @@
                         background-color: #e1523f;
                     }
                     p{
-                        margin-top:.5rem;
+                        margin-top:.6rem;
                         font-size: .7rem;
                     }
                 }
