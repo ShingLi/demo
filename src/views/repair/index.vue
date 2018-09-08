@@ -1,7 +1,7 @@
 <template>
     <transition name='slide' mode='out-in'>
         <div class="feedback-wrapper">
-            <v-header title='消费记录' text='返回' @back='back'>
+            <v-header title='故障报修' text='返回' @back='back'>
                 <i class="iconfont icon-jiantouzuo" slot='back'></i>
             </v-header>
             <!-- 扫描二维码 -->
@@ -36,7 +36,7 @@
     import tag from 'components/tag'
     import { Button, Toast } from 'vant'
     export default {
-        name: 'feedback',
+        name: 'repair',
         data () {
             return {
                 loading: false,

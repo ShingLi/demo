@@ -19,3 +19,10 @@ $color-background-line:linear-gradient(#40e399, #26bfb7);
     background-color: $color-background-d;
     z-index: 99;
 }
+// 背景图的2X 3X
+@mixin bg-image($url) {
+  background-image: url($url + "@2x.png");
+  @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3) {
+    background-image: url($url + "@3x.png");
+  }
+}

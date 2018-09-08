@@ -29,9 +29,10 @@ module.exports = {
       // allow debugger during development
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
       'indent': 'off',
-      'vue/script-indent': ['error',4,{'baseIndent': 1}],
+      'vue/script-indent': ['error',4,{'baseIndent': 1}], // 4缩进
       'prefer-promise-reject-errors': ["error", {"allowEmptyReject": true}],
-      "no-tabs":"off"
+      "no-tabs":"off",
+      'no-unused-expressions': 0 //允许3目表达式
       
     }
   }

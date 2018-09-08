@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import userCenter from 'views/user-center'
+import about from 'views/about/router'
+
 Vue.use(Router)
 
 const routes = [
@@ -61,15 +63,16 @@ const routes = [
         component: () => import('views/consume-record')
     },
     {
-        path: '/feedback',
-        name: 'feedback',
-        component: () => import('views/feedback')
+        path: '/repair',
+        name: 'repair',
+        component: () => import('views/repair')
     },
     {
         path: '/tobuy',
         name: 'tobuy',
         component: () => import('views/to-buy')
-    }
+    },
+    ...about
 ]
 export default new Router({
     routes

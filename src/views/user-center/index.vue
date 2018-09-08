@@ -62,7 +62,7 @@
                 <i class="iconfont icon-xiche"></i>
                 <span>洗车</span>
             </router-link>
-            <router-link to='' tag='div'>
+            <router-link to='/about' tag='div'>
                 <i class="iconfont icon-guanyuwomen"></i>
                 <span>关于我们</span>
             </router-link>
@@ -105,8 +105,8 @@
                 },
                 {
                     icon: 'icon-shezhi',
-                    text: '故障保修',
-                    url: '/feedback'
+                    text: '故障报修',
+                    url: '/repair'
                 },
                 {
                     icon: 'icon-namai',
