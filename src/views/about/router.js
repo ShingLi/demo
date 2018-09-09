@@ -13,5 +13,10 @@ export default [
         path: '/copyright',
         name: 'copyright',
         component: () => import('./copyright')
+    },
+    {
+        path: '/disclaimer',
+        name: 'disclaimer',
+        component: () => import('./disclaimer')
     }
 ]

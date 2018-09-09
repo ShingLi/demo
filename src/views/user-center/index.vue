@@ -157,7 +157,7 @@
         .header{
             &-box{
                 // padding: 1rem;
-                padding-bottom: 1rem;
+                padding-bottom: .8rem;
                 .userInfo{
                     display: flex;
                     align-items: center;
@@ -227,7 +227,7 @@
                     width: 25%;
                     height: 3rem;;
                     text-align: center;
-                    margin:  .8rem 0;
+                    margin:  .65rem 0;
                     i{
                         font-size: 1.25rem;
                         &.icon-shoucang{

@@ -15,39 +15,46 @@
                 <!-- tag -->
                 <tag icon='icon-dianping' text='我的充电站'></tag>
                 <!-- 充电站列表 -->
-                <div class="device-list">
-                    <ul>
-                        <li class="device-item">
-                            <div class="deviceMsg">
-                                <h3 class="title">10路电瓶车充电站</h3>
-                                <address class="address">安徽省芜湖市镜湖区站东路</address>
-                                <ul>
-                                    <li class='navigate'>
-                                        <i class="iconfont icon-204"></i>
-                                        <span>导航</span>
+                <scroll class="scroll">
+                    <div class="device-list">
+                        <ul>
+                            <template v-for='n in 20'>
+                                <van-swipe-cell :right-width="70" :key='n'>
+                                    <li class="device-item">
+                                        <div class="deviceMsg">
+                                            <h3 class="title">10路电瓶车充电站</h3>
+                                            <address class="address">安徽省芜湖市镜湖区站东路</address>
+                                            <ul>
+                                                <li class='navigate'>
+                                                    <i class="iconfont icon-204"></i>
+                                                    <span>导航</span>
+                                                </li>
+                                                <li class="chazuo">
+                                                    <span>0可用/0插座</span>
+                                                </li>
+                                                <li class="editName">
+                                                    <i class="iconfont icon-edit-1-copy"></i>
+                                                    <span>修改备注姓名</span>
+                                                </li>
+                                                <!-- <li class="delCollect" @click='delCollect'>
+                                                    <i class="iconfont icon-shanchu"></i>
+                                                    <span>删除</span>
+                                                </li> -->
+                                            </ul>
+                                        </div>
+                                        <div class="mainOperate">
+                                            <div class="circle">
+                                                <i class="iconfont icon-dianping"></i>
+                                            </div>
+                                            <span class="chongdian">充电</span>
+                                        </div>
                                     </li>
-                                    <li class="chazuo">
-                                        <span>0可用/0插座</span>
-                                    </li>
-                                    <li class="editName">
-                                        <i class="iconfont icon-edit-1-copy"></i>
-                                        <span>修改备注姓名</span>
-                                    </li>
-                                    <li class="delCollect" @click='delCollect'>
-                                        <i class="iconfont icon-shanchu"></i>
-                                        <span>删除</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="mainOperate">
-                                <div class="circle">
-                                    <i class="iconfont icon-dianping"></i>
-                                </div>
-                                <span class="chongdian">充电</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                                    <div slot='right' class="del">删除</div>
+                                </van-swipe-cell>
+                            </template>
+                        </ul>
+                    </div>
+                </scroll>
             </div>
             <!-- 没有数据的显示 -->
             <no-data data='您还没有收藏任何设备' v-if='false'></no-data>
@@ -58,7 +65,8 @@
     import vHeader from 'components/header'
     import Tag from 'components/tag'
     import NoData from 'components/no-data'
-    import { Dialog } from 'vant'
+    import Scroll from 'components/scroll/scroll'
+    import { Dialog, SwipeCell } from 'vant'
     export default {
         name: 'collect',
         data () {
@@ -69,7 +77,9 @@
         components: {
             vHeader,
             Tag,
-            NoData
+            NoData,
+            Scroll,
+            vanSwipeCell: SwipeCell
         },
         methods: {
             back () {
@@ -93,13 +103,30 @@
 <style lang="scss" scoped>
     @import '~styles/variables.scss';
     .collect-wrapper{
-        position: fixed;
-        top:0;
-        left: 0;
-        bottom:0;
-        width: 100%;
-        // min-height: calc(100vh);
-        background-color: $color-background-d;
+        @include fixed;
+        // 删除
+        // scroll
+        .scroll{
+            position: absolute;
+            top:7rem;
+            left: 0;
+            width: 100%;
+            bottom: 0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .del{
+            width: 2.8rem;
+            margin-left: .3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: .8rem;
+            border-radius: 4px;
+            color:$color-text;
+            background-color: #FE4444;
+        }
         .search{
             &-wrapper{
                 padding:  0 5%;
@@ -127,6 +154,7 @@
             &-item{
                 display: flex;
                 padding: 1rem .45rem;
+                margin-bottom: .45rem;
                 align-items: center;
                 border-radius: 5px;
                 background-color: #fff;

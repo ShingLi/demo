@@ -1,11 +1,11 @@
 <template>
     <transition name='slide' mode='out-in'>
         <div class="statement-wrapper">
-            <v-header title='版权声明' text='返回' @back='back'>
+            <v-header title='免责声明' text='返回' @back='back'>
                 <i class="iconfont icon-jiantouzuo" slot='back'></i>
             </v-header>
             <ul class="statement-list">
-                <li class="copy-statement">版权声明</li>
+                <li class="copy-statement">免责声明</li>
                 <li class="rule" v-for='(rule,index) in statement' :key='index'>
                     <i class="circle"></i>
                     <p class="desc" v-text='rule.descriable'></p>
@@ -18,21 +18,18 @@
 <script>
     import vHeader from 'components/header'
     export default {
-        name: 'copyright',
+        name: 'disclaimer',
         data () {
             return {
                 statement: [
                     {
-                        descriable: '是由独立开发并运营的智能充电系统。'
+                        descriable: '电站每个插口只允许一台电动车充电，请不要接其他负载，以免断电保护；如因使用者操作不当引起的一切损失及后果由使用者自行承担，并赔偿电站相应损失。'
                     },
                     {
-                        descriable: '对其发行的或合作公司共同发行的包括但不限于产品或服务的全部内容及网站上的材料拥有版权等知识产权，收法律保护。'
+                        descriable: '仅为使用者提供电动车充电便利，不承担保管及任何安全保障，请在离开时锁好爱车；如出现损坏、遗失、被盗等情况，电站均不承担经济和法律责任。'
                     },
                     {
-                        descriable: '未经本公司书面许可，任何单位及个人不得以任何方式或理由对上述产品、服务、信息、材料的任何部分进行使用、复制、修改、抄录、传播或与其他产品捆绑使用销售。'
-                    },
-                    {
-                        descriable: '凡侵犯本公司版权等知识产权的，本公司必依法追究其法律责任。'
+                        descriable: '请严格按照操作指南进行充电，如因使用者操作不当引发的一切损失及后果由使用者自行承担，并赔偿电站相应损失。'
                     }
                 ]
             }
@@ -67,6 +64,7 @@
         &-list{
             min-height: calc(100% - 2.2rem );
             padding-bottom: 2.2rem;
+            @include clearfix;
             .copy-statement{
                 height: 2rem;
                 line-height: 2rem;

@@ -17,7 +17,7 @@
                 <van-cell title="版权声明" is-link  to='/copyright'/>
             </van-cell-group>
             <van-cell-group>
-                <van-cell title="免责声明" is-link  />
+                <van-cell title="免责声明" is-link  to='/disclaimer'/>
             </van-cell-group>
             <p class="copyright">芜湖摩灿智能有限公司运营</p>
         </div>
@@ -66,11 +66,13 @@
             }
             .copyright{
                 position: fixed;
-                bottom: 3rem;
+                bottom: 0rem;
+                height: 2.2rem;
+                line-height: 2.2rem;
                 width: 100%;
                 text-align: center;
                 color: #bbbbbb;
-                font-size: .8rem;
+                font-size: .7rem;
             }
         }
     }

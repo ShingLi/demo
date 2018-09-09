@@ -9,7 +9,7 @@ $color-background:#40e399;
 $color-background-d:#F0F2F0;
 $color-background-line:linear-gradient(#40e399, #26bfb7);
 
-// 样式
+// 默认视图层的背景色
 @mixin fixed {
     position: fixed;
     top:0;
@@ -20,9 +20,21 @@ $color-background-line:linear-gradient(#40e399, #26bfb7);
     z-index: 99;
 }
 // 背景图的2X 3X
-@mixin bg-image($url) {
+@mixin bg-image ($url) {
   background-image: url($url + "@2x.png");
   @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3) {
     background-image: url($url + "@3x.png");
   }
+}
+// 清楚浮动
+@mixin clearfix {
+    display: inline-block;
+    &::after {
+        display: block;
+        content: ".";
+        height: 0;
+        line-height: 0;
+        clear: both;
+        visibility: hidden;
+    }
 }
