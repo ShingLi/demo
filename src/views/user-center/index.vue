@@ -2,7 +2,7 @@
     <div class="userCenterWrapper">
         <div class="bg">
             <v-header :title='title' class="v-header">
-                <i class="iconfont icon-shezhi" slot='right'></i>
+                <i class="iconfont icon-shezhi" slot='right' @click="$router.push({path: '/set'})"></i>
             </v-header>
             <div class="header-box">
                 <div class="userInfo">
@@ -23,11 +23,11 @@
                             <p class="text">余额</p>
                             <p class='money'>￥191111</p>
                         </li>
-                        <li class='item'>
+                        <li class='item'  @click="$router.push({path: '/coupon'})">
                             <i class="iconfont icon-qiaquan"></i>
                             <p class="text">卡券</p>
                         </li>
-                        <li class='item'>
+                        <li class='item' @click="$router.push({path: '/help'})">
                             <i class="iconfont icon-bangzhu1"></i>
                             <p class="text">帮助</p>
                         </li>
@@ -54,7 +54,7 @@
         </div>
         <!-- footer -->
         <div class="footer">
-            <router-link to='' tag='div'>
+            <router-link to='/charge' tag='div'>
                 <i class="iconfont icon-xiaoxi"></i>
                 <span>充电</span>
             </router-link>

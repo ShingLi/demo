@@ -2,7 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import userCenter from 'views/user-center'
 import about from 'views/about/router'
-
+import coupon from 'views/coupon/router'
+import set from 'views/set/router'
+import help from 'views/help/router'
+import charge from 'views/charge/router'
 Vue.use(Router)
 
 const routes = [
@@ -72,7 +75,11 @@ const routes = [
         name: 'tobuy',
         component: () => import('views/to-buy')
     },
-    ...about
+    ...about,
+    coupon,
+    ...set,
+    help,
+    ...charge
 ]
 export default new Router({
     routes

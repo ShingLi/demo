@@ -7,10 +7,10 @@
             <!-- search -->
             <div>
                 <div class="search-wrapper">
-                <input type="text"
-                    class="search-box"
-                    placeholder="请输入设备名称进行搜索"
-                    :model='query'>
+                    <input type="text"
+                        class="search-box"
+                        placeholder="请输入设备名称进行搜索"
+                        :model='query'>
                 </div>
                 <!-- tag -->
                 <tag icon='icon-dianping' text='我的充电站'></tag>
@@ -55,6 +55,8 @@
                         </ul>
                     </div>
                 </scroll>
+                <!-- 加载动画 -->
+                <!-- <loading :width='200' :height='200'></loading> -->
             </div>
             <!-- 没有数据的显示 -->
             <no-data data='您还没有收藏任何设备' v-if='false'></no-data>
@@ -66,12 +68,14 @@
     import Tag from 'components/tag'
     import NoData from 'components/no-data'
     import Scroll from 'components/scroll/scroll'
+    import Loading from 'components/loading/loading'
     import { Dialog, SwipeCell } from 'vant'
     export default {
         name: 'collect',
         data () {
             return {
-                query: ''
+                query: '',
+                collectData: []
             }
         },
         components: {
@@ -79,6 +83,7 @@
             Tag,
             NoData,
             Scroll,
+            Loading,
             vanSwipeCell: SwipeCell
         },
         methods: {
