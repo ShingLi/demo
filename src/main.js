@@ -6,6 +6,11 @@ import router from './router'
 
 import 'styles/index.scss'
 import 'assets/js/rem'
+import BaiduMap from 'vue-baidu-map'
+
+Vue.use(BaiduMap, {
+    ak: 'Hl8SX8eBfsE5rebWCszbU0m4D5qWYlVV'
+})
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
