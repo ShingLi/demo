@@ -6,6 +6,9 @@ import router from './router'
 
 import 'styles/index.scss'
 import 'assets/js/rem'
+
+import './auth'
+
 import BaiduMap from 'vue-baidu-map'
 
 Vue.use(BaiduMap, {

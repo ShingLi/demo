@@ -83,6 +83,7 @@ const routes = [
     ...charge,
     ...pay
 ]
+
 export default new Router({
     routes
 })
