@@ -62,6 +62,10 @@
                 <i class="iconfont icon-xiche"></i>
                 <span>洗车</span>
             </router-link>
+            <router-link to='/carbarn' tag='div'>
+                <i class="iconfont icon-map-stopping"></i>
+                <span>车库</span>
+            </router-link>
             <router-link to='/about' tag='div'>
                 <i class="iconfont icon-guanyuwomen"></i>
                 <span>关于我们</span>
@@ -138,7 +142,6 @@
         },
         mounted () {
             // window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx147de049703bd37b&redirect_uri=http://xytest.natapp1.cc&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
-            
         }
     }
 </script>

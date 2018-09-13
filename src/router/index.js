@@ -7,6 +7,7 @@ import set from 'views/set/router'
 import help from 'views/help/router'
 import charge from 'views/charge/router'
 import pay from 'views/pay/router'
+import carbarn from 'views/carbarn/router'
 Vue.use(Router)
 
 const routes = [
@@ -81,7 +82,8 @@ const routes = [
     ...about,
     ...set,
     ...charge,
-    ...pay
+    ...pay,
+    ...carbarn
 ]
 
 export default new Router({

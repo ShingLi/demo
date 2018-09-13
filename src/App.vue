@@ -1,7 +1,6 @@
 <template>
     <div id="app">
-        <!-- <transition></transition> -->
-            <router-view></router-view>
+        <router-view></router-view>
     </div>
 </template>
 <script>

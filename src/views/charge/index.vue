@@ -1,6 +1,7 @@
 <template>
     <transition name='slide' mode='out-in'>
-        <div class="charge-wrapper" ref='chargeWrapper'>
+    <div class="charge-wrapper">
+        <div class="charge-wrapper" ref='chargeWrapper' v-if='zz'>
              <v-header title='附近电站' text='首页' @back='back' ref='header' style="z-index:9">
                 <i class="iconfont icon-jiantouzuo" slot='back'></i>
             </v-header>
@@ -9,6 +10,7 @@
                 <p class="loc-city">芜湖市</p>
                 <input type="text"
                     class="search"
+                    v-model.trim='query'
                     placeholder="请输入充电站名称进行搜索"
                 >
                 <router-link to='/collect' tag='div'>
@@ -16,59 +18,64 @@
                     <span>收藏</span>
                 </router-link>
             </div>
-            <!-- 地图区域 -->
-            <baidu-map center="芜湖" :zoom="zoom" @ready="handler" class="bm-view" ref='baidu'></baidu-map>
-            <!-- 充电站列表 -->
-            <div class="bg-layer" ref='layer'></div>
-            <scroll class="scroll"
-                ref='scroll'
-                @scroll='scroll'
-                :listenScroll='listenScroll'
-                :probeType='probeType'
-            >
-                <ul class="device-list">
-                    <li class="device-item" v-for='(n,index) in 20' :key='index'>
-                        <div class="deviceMsg">
-                            <h3 class="title">10路电瓶车充电站</h3>
-                            <address class="address">安徽省芜湖市镜湖区站东路</address>
-                            <ul>
-                                <li class='distance'>
-                                    <span>200000m</span>
-                                </li>
-                                <li class="chazuo">
-                                    <span>0可用/100插座</span>
-                                </li>
-                                <li class="collect" @click='collect'>
-                                    <i class="iconfont icon-collection"></i>
-                                    <span>收藏</span>
-                                </li>
-                                <li class='navigate'>
-                                    <i class="iconfont icon-204"></i>
-                                    <span>导航</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="mainOperate" @click='charge'>
-                            <div class="circle">
-                                <i class="iconfont icon-dianping"></i>
+            <div>
+                <!-- 地图区域 -->
+                <baidu-map center="芜湖" :zoom="zoom" @ready="handler" class="bm-view" ref='baidu'></baidu-map>
+                <!-- 充电站列表 -->
+                <!-- <div class="bg-layer" ref='layer'></div> -->
+                <scroll class="scroll"
+                    ref='scroll'
+                    @scroll='scroll'
+                    :listenScroll='listenScroll'
+                    :probeType='probeType'
+                >
+                    <ul class="device-list">
+                        <li class="device-item" v-for='(n,index) in 20' :key='index'>
+                            <div class="deviceMsg">
+                                <h3 class="title">10路电瓶车充电站</h3>
+                                <address class="address">安徽省芜湖市镜湖区站东路</address>
+                                <ul>
+                                    <li class='distance'>
+                                        <span>200000m</span>
+                                    </li>
+                                    <li class="chazuo">
+                                        <span>0可用/100插座</span>
+                                    </li>
+                                    <li class="collect" @click='collect'>
+                                        <i class="iconfont icon-collection"></i>
+                                        <span>收藏</span>
+                                    </li>
+                                    <li class='navigate'>
+                                        <i class="iconfont icon-204"></i>
+                                        <span>导航</span>
+                                    </li>
+                                </ul>
                             </div>
-                            <span class="chongdian">充电</span>
-                        </div>
-                    </li>
-                </ul>
-                <!-- <div class="more-device">
-                    <a class="more-btn">查看更多</a>
-                </div> -->
-            </scroll>
+                            <div class="mainOperate" @click='charge'>
+                                <div class="circle">
+                                    <i class="iconfont icon-dianping"></i>
+                                </div>
+                                <span class="chongdian">充电</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- <div class="more-device">
+                        <a class="more-btn">查看更多</a>
+                    </div> -->
+                </scroll>
+            </div>
         </div>
+        <loading v-if="!zz"></loading>
+    </div>
     </transition>
 </template>
 <script>
     import vHeader from 'components/header'
     import Scroll from 'components/scroll/scroll'
+    import Loading from 'components/loading/loading'
     import { prefixStyle } from 'assets/js/dom'
     const backdrop = prefixStyle('backdrop-filter')
-    const transform = prefixStyle('transform')
+    // const transform = prefixStyle('transform')
     export default {
         name: 'charge',
         data () {
@@ -78,7 +85,8 @@
                 //     lat: 0
                 // },
                 zoom: 13,
-                scrollY: -1
+                scrollY: -1,
+                zz: false
             }
         },
         created () {
@@ -86,6 +94,11 @@
             this.listenScroll = true
         },
         mounted () {
+            setTimeout(() => {
+                this.zz = true
+            }, 1000)
+        },
+        updated () {
             let H = this.$refs.chargeWrapper.clientHeight
             let scrollHeight = this.$refs.scroll.$el.clientHeight
             let headerHeight = this.$refs.header.$el.clientHeight
@@ -93,11 +106,12 @@
             let baiduHeight = H - scrollHeight - headerHeight - searchHeight
             this.minTranslateY = -baiduHeight
             this.$refs.baidu.$el.style.height = `${baiduHeight}px`
-            alert(scrollHeight)
+            this.$refs.scroll.refresh()
         },
         components: {
             vHeader,
-            Scroll
+            Scroll,
+            Loading
         },
         methods: {
             back () {
@@ -123,14 +137,18 @@
         },
         watch: {
             scrollY (newY) {
-                let translateY = Math.max(this.minTranslateY, newY)
+                // let translateY = Math.max(this.minTranslateY, newY)
+                // 苹果的高斯模糊
                 let blur = 0
                 const percent = Math.abs(newY / this.minTranslateY)
                 if (newY < 0) {
                     blur = Math.min(20, percent * 20)
                 }
-                this.$refs.layer.style[transform] = `translate3d(0,${translateY}px,0)`
+                // this.$refs.layer.style[transform] = `translate3d(0,${translateY}px,0)`
                 this.$refs.search.style[backdrop] = `blur(${blur}px)`
+            },
+            query (newVal) {
+
             }
         }
     }
@@ -190,20 +208,16 @@
             .device{
                 &-list{
                     // padding-bottom: 1rem
-                    // background-color: #fff;
+                    background-color: #fff;
                 }
                 &-item{
-                    height: 4.8rem;
+                    // height: 4.8rem;
                     display: flex;
                     padding: .7rem .45rem;
                     margin-bottom: .45rem;
                     align-items: center;
                     border-radius: 5px;
                     border-bottom: 1px solid #f5f5f5;
-                    &:last-child{
-                        margin-bottom: 0;
-                        padding-bottom: 0;
-                    }
                     .deviceMsg{
                     flex:1;
                         .title{
