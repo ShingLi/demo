@@ -52,6 +52,21 @@
                 </template>
             </ul>
         </div>
+        <!-- 我的车位 -->
+        <div class="carInfo-wrapper">
+            <tag text='我的车位' icon='icon-tingchechang'></tag>
+            <ul>
+                <template v-for='(item,index) in carHandle'>
+                    <li class="module" :key='index' @click='href(index)'>
+                        <router-link :to='`${item.url}`' class="_a">
+                            <i class="iconfont" :class="item.icon"></i>
+                            <!-- badge -->
+                            <p v-text='item.text'></p>
+                        </router-link>
+                    </li>
+                </template>
+            </ul>
+        </div>
         <!-- footer -->
         <div class="footer">
             <router-link to='/charge' tag='div'>
@@ -128,6 +143,28 @@
                     url: ''
                 }
             ]
+            this.carHandle = [
+                {
+                    icon: 'icon-cheliangxinxi',
+                    text: '车位订单',
+                    url: ''
+                },
+                {
+                    icon: 'icon-cheliangguanli-',
+                    text: '车位续费',
+                    url: ''
+                },
+                {
+                    icon: 'icon-xingchezhinan',
+                    text: '车位绑定',
+                    url: ''
+                },
+                {
+                    icon: 'icon-yingyongchengxu',
+                    text: '查看更多',
+                    url: ''
+                }
+            ]
         },
         components: {
             vHeader,
@@ -141,6 +178,7 @@
             }
         },
         mounted () {
+            
             // window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx147de049703bd37b&redirect_uri=http://xytest.natapp1.cc&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
         }
     }
@@ -221,8 +259,8 @@
                 }
             }
         }
-        .featuers-wrapper{
-            margin-top: 1rem;
+        .featuers-wrapper,.carInfo-wrapper{
+            margin-top: .8rem;
             padding: 10px 0 0rem 0;
             min-height: 3rem;
             background: #fff;
@@ -261,6 +299,16 @@
                         &.icon-guanliyuan{
                             color: #4e93ff;
                         }
+                        &.icon-cheliangxinxi{
+                            color: #55c2fa;
+                        }
+                        &.icon-cheliangguanli-{
+                            color: #e1523f
+                        }
+                        &.icon-xingchezhinan{
+                            color: #f7931e
+                        }
+                        &.icon-yingyongchengxu{}
                     }
                     .badge{
                         position: absolute;
@@ -276,6 +324,13 @@
                         font-size: .7rem;
                     }
                 }
+            }
+        }
+        .carInfo{
+            &-wrapper{
+                margin-top: 1rem;
+                padding-top:.6rem;
+                background-color: #fff;
             }
         }
         .footer{
