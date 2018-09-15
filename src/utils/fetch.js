@@ -1,54 +1,71 @@
-import Vue from 'vue'
 import axios from 'axios'
 import qs from 'qs'
+import {
+    Toast
+} from 'vant'
 
-axios.defaults.timeout = 5000
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-axios.defaults.baseURL = (process.env.NODE_ENV === 'development' ? 'http://peifei.qmant.com/' : 'http://peifei.qmant.com/')
-
-// POST传参序列化
-axios.interceptors.request.use((config) => {
-    if (config.method === 'post' || config.method === 'put') {
-        config.data = qs.parse(config.data, {
-            arrayFormat: 'brackets'
-        })
+let cancel = {}
+let promiseArr = {}
+const CancelToken = axios.CancelToken
+axios.interceptors.request.use(config => {
+    if (promiseArr[config.url]) {
+        promiseArr[config.url]('操作取消')
+        promiseArr[config.url] = cancel
+    } else {
+        promiseArr[config.url] = cancel
     }
-    return config
-}, (error) => {
-    Vue.$vux.toast.show({
-        text: '非法输入',
-        type: 'text',
-        time: 1000
-    })
+}, error => {
     return Promise.reject(error)
 })
 
-// code状态码200判断
-axios.interceptors.response.use((res) => {
-    if (res.data.code !== '20000') {
-        Vue.$vux.toast.show({
-            text: res.data.message,
-            type: 'text',
-            time: 1000
-        })
-        return Promise.reject(res)
-    }
-    return res
-}, (error) => {
-    if (error.response) {
-        switch (error.response.status) {
-        case 401:
-            // window.location.href = `http://${window.document.location.host}/?#/login/`
-            break
-        default:
-            Vue.$vux.toast.show({
-                text: '网络异常',
-                type: 'text',
-                time: 1000
-            })
+axios.interceptors.response.use(response => {
+    return response
+}, error => {
+    if (error && error.response) {
+        switch (error.response.normal) {
+        case 404:
+            Toast.fail('请重新授权')
         }
     }
-    return Promise.reject(error)
+    return Promise.resolve(error.response)
 })
 
-export default axios
+axios.defaults.baseURL = '/api/'
+axios.defaults.headers = {
+    'X-Requested-With': 'XMLHttpRequest'
+}
+axios.defaults.timeout = 10000
+
+export default {
+    // get请求
+    get (url, param) {
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'get',
+                url,
+                params: param,
+                cancelToken: new CancelToken(c => {
+                    cancel = c
+                })
+            }).then(res => {
+                resolve(res)
+            })
+        })
+    },
+    // post请求
+    post (url, data) {
+        console.log(url)
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'post',
+                url,
+                data: qs.stringify(data)
+                // cancelToken: new CancelToken(c => {
+                //     cancel = c
+                // })
+            }).then(res => {
+                resolve(res)
+            })
+        })
+    }
+}

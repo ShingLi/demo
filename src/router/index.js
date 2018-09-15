@@ -8,6 +8,9 @@ import help from 'views/help/router'
 import charge from 'views/charge/router'
 import pay from 'views/pay/router'
 import carbarn from 'views/carbarn/router'
+// 代理商
+
+import agent from 'views/agent/router'
 Vue.use(Router)
 
 const routes = [
@@ -83,7 +86,8 @@ const routes = [
     ...set,
     ...charge,
     ...pay,
-    ...carbarn
+    ...carbarn,
+    ...agent
 ]
 
 export default new Router({
