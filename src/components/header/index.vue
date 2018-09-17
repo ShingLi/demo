@@ -1,5 +1,5 @@
 <template>
-    <div class="header_wrapper">
+    <div class="header_wrapper" :style='bgColor'>
         <div class="back" @click='back'>
             <slot name='back'></slot>
             <span class="text" v-text='text'></span>
@@ -21,6 +21,20 @@
             title: {
                 type: String,
                 default: ''
+            },
+            bg: {
+                type: String,
+                default: ''
+            }
+        },
+        computed: {
+            bgColor () {
+                switch (this.bg) {
+                case 'agent':
+                    return `background: linear-gradient(#55c2fa, #4e93ff)`
+                default:
+                    return `background: linear-gradient(#40e399, #26bfb7)`
+                }
             }
         },
         methods: {
@@ -42,7 +56,7 @@
         width: 100%;
         height: 2.2rem;
         line-height: 2.2rem;
-        background: $color-background-line;
+        // background: $color-background-line;
         .back{
             display: flex;
             align-items: center;

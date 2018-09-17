@@ -86,7 +86,8 @@
                 // },
                 zoom: 13,
                 scrollY: -1,
-                zz: false
+                zz: false,
+                query: ''
             }
         },
         created () {

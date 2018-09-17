@@ -2,7 +2,11 @@
     <transition name='slide' mode='out-in'>
         <div class="agent-wrapper">
             <header class="header">
-                <v-header title='代理商首页' text='返回' @back='back' style="background:none">
+                <v-header title='代理商首页'
+                    text='返回'
+                    @back='back'
+                    style="background:none"
+                    >
                     <i class="iconfont icon-jiantouzuo" slot='back'></i>
                 </v-header>
                 <h4 class="total-text">今日总收益(元)</h4>
@@ -31,6 +35,7 @@
                     title='绑定设备'
                     label='请扫描设备上的二维码'
                     is-link
+                    @click='Tips'
                 >
                     <i class="iconfont icon-saoma" slot='icon'></i>
                 </van-cell>
@@ -47,7 +52,7 @@
 </template>
 <script>
     import vHeader from 'components/header'
-    import { Cell, CellGroup } from 'vant'
+    import { Cell, CellGroup, Toast} from 'vant'
     export default {
         name: 'agent-index',
         data () {
@@ -66,6 +71,9 @@
         methods: {
             back () {
                 this.$router.go(-1)
+            },
+            Tips () {
+                Toast('抱歉，该功能未开放！')
             }
         }
     }
@@ -87,7 +95,8 @@
             .header{
                 text-align: center;
                 color:#fff;
-                background: linear-gradient(#40e399, #26bfb7);
+                background: linear-gradient(#55c2fa, #4e93ff);
+                // background: linear-gradient(#40e399, #26bfb7);
                 .total{
                     &-text{
                         font-size: 1rem;

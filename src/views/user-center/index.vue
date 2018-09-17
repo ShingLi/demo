@@ -1,7 +1,7 @@
 <template>
     <div class="userCenterWrapper">
         <div class="bg">
-            <v-header :title='title' class="v-header">
+            <v-header :title='title' class="v-header" style='background:none'>
                 <i class="iconfont icon-shezhi" slot='right' @click="$router.push({path: '/set'})"></i>
             </v-header>
             <div class="header-box">
@@ -176,6 +176,9 @@
                     window.location.href = 'tel:18955310567'
                 }
             }
+        },
+        mounted () {
+            // window.location.href='/access'
         }
     }
 </script>
