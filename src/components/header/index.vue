@@ -76,8 +76,10 @@
             left: 50%;
             transform: translate(-50%,-50%);
             color:$color-text;
+            font-size: .9rem;
         }
         .right{
+            font-size: .8rem;
             i{
                 color: $color-text;
                 font-size: 1rem;

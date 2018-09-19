@@ -50,7 +50,7 @@
             </van-cell-group>
             <!-- featuers 按照功能选择 -->
             <div class="featuers">
-                <router-link tag='div' to='' class="item">
+                <router-link tag='div' to='/device' class="item">
                     <div class="icon-wrapper z1">
                         <svg class="icon icon-mokuai" aria-hidden="true"><use xlink:href="#icon-mokuai"></use></svg>
                     </div>
@@ -64,7 +64,7 @@
                     <h4 class="title">订单查询</h4>
                     <p class="desc">查看您的所有订单详情</p>
                 </router-link>
-                <router-link tag='div' to='' class="item">
+                <router-link tag='div' to='/chart' class="item">
                     <div class="icon-wrapper z3">
                         <svg class="icon icon-tongjibaobiao" aria-hidden="true"><use xlink:href="#icon-tongjibaobiao"></use></svg>
                     </div>

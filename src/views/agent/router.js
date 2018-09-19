@@ -1,3 +1,4 @@
+import device from './device/router'
 export default [
     {
         path: '/agent-index',
@@ -5,28 +6,34 @@ export default [
         component: () => import('./')
     },
     {
-        path: '/user-center',
+        path: '/user-center', // 代理商个人中心
         name: 'user-center',
         component: () => import('./user-center/user-center')
     },
     {
-        path: '/pwd',
+        path: '/pwd', // 个人中心账户密码
         name: 'pwd',
         component: () => import('./pwd/pwd')
     },
     {
-        path: '/addSubAccount',
+        path: '/addSubAccount', // 个人中心添加小区管理员
         name: 'addSubAccount',
         component: () => import('./addsubaccount/addsubaccount')
     },
     {
-        path: '/install',
+        path: '/install', // 个人中心安装设备
         name: 'install',
         component: () => import('./install/install')
     },
     {
-        path: '/community',
+        path: '/community', // 小区管理员
         name: 'community',
         component: () => import('./community/community')
+    },
+    ...device,
+    {
+        path: '/chart',
+        name: 'chart',
+        component: () => import('./chart/chart')
     }
 ]
