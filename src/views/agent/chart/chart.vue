@@ -16,7 +16,7 @@
                         <i class="iconfont icon-rili" @click='showDatePopup'></i>
                         <span>2018年 7月</span>
                     </div>
-                    <tag text='收入趋势'></tag>
+                    <tag text='收入趋势' bg='agent' icon='icon-qushi'></tag>
                 </div>
             </scroll>
             <van-popup
@@ -83,37 +83,38 @@
     }
 </script>
 <style lang="scss" scoped>
-@import "~styles/variables.scss";
-.chart {
-  &-wrapper {
-    @include fixed;
-    background-color: #fff;
-    .scroll {
-      position: absolute;
-      top: 2.2rem;
-      left: 0;
-      width: 100%;
-      bottom: 0;
-      overflow: hidden;
-      .date {
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        padding-top: 0.3rem;
-        // color:$color-text-d;
-        .iconfont {
-          display: inline-block;
-          vertical-align: top;
-          margin-right: 0.6rem;
-          font-size: 1.1rem;
-          color: $color-text-d;
+    @import "~styles/variables.scss";
+    .chart {
+        &-wrapper {
+            @include fixed;
+            background-color: #fff;
+            .scroll {
+                position: absolute;
+                top: 2.2rem;
+                left: 0;
+                width: 100%;
+                bottom: 0;
+                overflow: hidden;
+                .date {
+                    display: flex;
+                    align-content: center;
+                    justify-content: center;
+                    padding-top: 0.3rem;
+                    margin-bottom: .5rem;
+                    // color:$color-text-d;
+                    .iconfont {
+                        display: inline-block;
+                        vertical-align: top;
+                        margin-right: 0.6rem;
+                        font-size: 1.1rem;
+                        color: $color-text-d;
+                    }
+                    span {
+                        line-height: 25px;
+                        vertical-align: top;
+                    }
+                }
+            }
         }
-        span {
-          line-height: 25px;
-          vertical-align: top;
-        }
-      }
     }
-  }
-}
 </style>

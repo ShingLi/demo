@@ -81,6 +81,11 @@ const routes = [
         name: 'tobuy',
         component: () => import('views/to-buy')
     },
+    {
+        path: '/author',
+        name: 'author',
+        component: () => import('views/author/author')
+    },
     coupon,
     help,
     ...about,

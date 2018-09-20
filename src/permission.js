@@ -1,33 +1,26 @@
-// import router from './router'
+import router from './router'
 // import Store from './store'
-// import axios from 'axios'
-// import qs from 'qs'
+
 // import {
 //     getOpenId
 // } from 'utils/auth'
 
 // router.beforeEach((to, from, next) => {
-//     if (getOpenId()) {
-//         next()
-//     } else {
-//         let query = window.location.search
-//         if (query.includes('?code=')) {
-//             Store.dispatch('getUserInfo', query).then()
-//             next()
-//         } else {
-//             let data = {
-//                 url: encodeURIComponent(window.location.href.split('#')[0])
-//             }
-//             axios({
-//                 method: 'post',
-//                 url: 'test.whxueying.com/weixinPage/authority.action',
-//                 header: {
-//                     'content-type': 'application/x-www-form-urlencoded'
-//                 },
-//                 data: qs.stringify(data)
-//             }).then(res => {
-//                 console.log(res)
+//     const token = window.localStorage.getItem('user_token')
+//     if (token) {
+//         if (to.path === '/author') {
+//             next({
+//                 path: '/'
 //             })
+//         } else {
+//             // 拉取用户信息
+//         }
+//     } else {
+//         if (to.path !== '/author') {
+//             window.localStorage.setItem('authUrl', to.fullPath)
+//             // 调用后端的接口获取后端跳转授权的地址
+//         } else {
+//             next()
 //         }
 //     }
 // })

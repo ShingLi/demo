@@ -181,7 +181,8 @@
             }
         },
         mounted () {
-            // window.location.href='/access'
+            console.log(window.location.search)
+            console.log(this.$route)
         }
     }
 </script>
