@@ -1,20 +1,29 @@
 <template>
     <transition name='slide' mode='out-in'>
         <div>
-            <div class="recharge-wrapper" v-if='false'>
+            <div class="recharge-wrapper" v-if='true'>
                 <v-header title='付款' text='返回' @back='back'>
                     <i class="iconfont icon-jiantouzuo" slot='back'></i>
                     <i class="iconfont icon-shoucang" slot='right'></i>
                 </v-header>
                 <form @submit.prevent='submit'>
-                    <scroll class="scroll">
+                    <scroll class="scroll" ref='scroll'>
                         <div>
                             <!-- 账户余额 -->
                             <div class="account-money">
-                                <div class="choose">
+                                <!-- 选择插座 -->
+                                <div class="choose" v-if='isCharge'>
                                     <tag icon='icon-chazuo' text='选择插座'></tag>
                                     <div class='right'>
                                         <i class="iconfont icon-dianping greenColor"></i>
+                                        <span>测试6501</span>
+                                    </div>
+                                </div>
+                                <!-- 选择洗车机 -->
+                                <div class="choose" v-if='isCarwash'>
+                                    <tag icon='icon-xiche' text='选择洗车机'></tag>
+                                    <div class='right'>
+                                        <i class="iconfont icon-xiche greenColor"></i>
                                         <span>测试6501</span>
                                     </div>
                                 </div>
@@ -35,10 +44,11 @@
                                 </van-swipe>
                                 <p class="device-name">设备名称: 17</p>
                             </div>
-                            <!-- 充值金额 -->
+                            <!-- 消费金额 -->
                             <div class="recharge-money">
                                 <tag icon='icon-3' text='消费金额'></tag>
-                                    <ul class="money-list">
+                                    <!-- 充电站消费金额的列表 -->
+                                    <ul class="money-list" v-if='isCharge'>
                                         <li class="money-item"
                                             v-for='(item,index) in moneyList'
                                             :key='item.id'
@@ -47,6 +57,18 @@
                                         >
                                             <p>{{item.money}}元</p>
                                             <span class="van-ellipsis">{{item.time}}分钟</span>
+                                        </li>
+                                    </ul>
+                                    <!-- 洗车机消费金额的列表 -->
+                                    <ul class="money-list" v-if='isCarwash'>
+                                        <li class="money-item"
+                                            v-for='(item,index) in moneyList'
+                                            :key='item.id'
+                                            @click='choose(item)'
+                                            :class="{'bg-active':index === moneyId}"
+                                        >
+                                            <p>{{item.money}}元</p>
+                                            <span class="van-ellipsis">{{item.time}}升</span>
                                         </li>
                                     </ul>
                                 <div class="_cell">
@@ -117,11 +139,14 @@
     import vHeader from 'components/header'
     import tag from 'components/tag'
     import Scroll from 'components/scroll/scroll'
-    import { Cell, CellGroup, Radio, RadioGroup, Button, Swipe, SwipeItem } from 'vant'
+    import { Cell, CellGroup, Radio, RadioGroup, Button, Swipe, SwipeItem, Toast } from 'vant'
     export default {
         name: 'recharge',
         data () {
             return {
+                hack: 0,
+                isCarwash: 0,
+                isCharge: 0,
                 moneyList: [
                     {
                         id: 0,
@@ -190,7 +215,34 @@
             onfocus () {
                 this.moneyId = -1
                 this.form.isshow = !this.form.isshow
+            },
+            refresh (vm) {
+                setTimeout(() => {
+                    vm.$refs.scroll.refresh()
+                }, 450)
             }
+        },
+        beforeRouteEnter (to, form, next) {
+            // 判断当前是从那个页面进来的 从而显示不同的页面
+            let { name } = form
+            next(vm => {
+                if (!name && name !== undefined) {
+                    Toast('请不要在当前页面刷新')
+                    setTimeout(() => {
+                        vm.$router.go(-1)
+                    }, 1000)
+                }
+                switch (name) {
+                case 'carwash':
+                    vm.isCarwash = 1
+                    vm.refresh(vm)
+                    break
+                case 'charge':
+                    vm.isCharge = 1
+                    vm.refresh(vm)
+                    break
+                }
+            })
         }
     }
 </script>
@@ -280,6 +332,9 @@
                             padding-top: 3px;
                             margin: 0 10px;
                             color: $color-text-d;
+                        }
+                        i{
+                            font-size: 1rem;
                         }
                     }
                     .choose{

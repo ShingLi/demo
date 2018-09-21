@@ -11,18 +11,25 @@
             <!-- bindcard -->
             <div class="search-wrapper">
                 <label>绑定新卡</label>
-                <input
+                <!-- <input
                     type="text"
                     class="search-box"
                     placeholder="请输入10位卡号"
                     v-model.trim='query'
                     maxlength="10"
-                />
+                /> -->
+                <form action="/">
+                    <van-search
+                        class="search-box"
+                        placeholder="请输入10位卡号"
+                        v-model.trim="query"
+                    />
+                </form>
                 <i class="iconfont icon-saoyisao" @click='scan'></i>
             </div>
+            <tag icon='iconfont icon-card' text='我的虚拟卡'></tag>
             <!--  -->
             <div class="main">
-                <tag icon='iconfont icon-card' text='我的虚拟卡'></tag>
                 <!-- 卡号列表 -->
                 <scroll class="scroll" v-if='true'>
                     <ul class="card-list">
@@ -52,7 +59,7 @@
     import Tag from 'components/tag'
     import NoData from 'components/no-data'
     import Scroll from 'components/scroll/scroll'
-    import { Dialog, Toast } from 'vant'
+    import { Dialog, Toast, Search } from 'vant'
     export default {
         name: 'coupon',
         data () {
@@ -64,7 +71,8 @@
             vHeader,
             Tag,
             Scroll,
-            NoData
+            NoData,
+            vanSearch: Search
         },
         methods: {
             back () {
@@ -99,6 +107,9 @@
 </script>
 <style lang="scss" scoped>
     @import '~styles/variables.scss';
+    .search-box /deep/ .van-cell {
+        background-color: transparent;
+    }
     .coupon{
         &-wrapper{
             @include fixed;
@@ -117,11 +128,11 @@
                     }
                     .icon-saoyisao{
                         font-size: 1rem;
-                        text-indent: -1.3rem;
+                        text-indent: 0rem;
                     }
                 }
                 &-box{
-                    width: 78%;
+                    width: 90%;
                     height: 1.3rem;
                     margin-left: .7rem;
                     line-height: 1.3rem;
@@ -138,15 +149,16 @@
                 // background-color: #fff;
                 .scroll{
                     position: absolute;
-                    top:8rem;
+                    top:7rem;
                     left: 0;
                     width: 100%;
                     bottom: 0;
                     overflow: hidden;
-                    background-color: #fff;
+                    // background-color: #fff;
                     .card{
                         &-list{
                             padding:1rem;
+                            padding-top: 0;
                         }
                         &-item{
                             display: flex;

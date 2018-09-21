@@ -8,6 +8,7 @@ import help from 'views/help/router'
 import charge from 'views/charge/router'
 import pay from 'views/pay/router'
 import carbarn from 'views/carbarn/router'
+import carwash from 'views/carwash/router'
 import installEquipment from 'views/install-equipment/router'
 // 代理商
 
@@ -93,6 +94,7 @@ const routes = [
     ...charge,
     ...pay,
     ...carbarn,
+    ...carwash,
     ...agent,
     ...installEquipment
 ]

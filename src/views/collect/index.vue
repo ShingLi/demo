@@ -7,10 +7,10 @@
             <!-- search -->
             <div>
                 <div class="search-wrapper">
-                    <input type="text"
-                        class="search-box"
-                        placeholder="请输入设备名称进行搜索"
-                        :model='query'>
+                    <!-- <van-search placeholder="请输入设备名称进行搜索" v-model="query" /> -->
+                    <form action="/">
+                        <van-search placeholder="请输入设备名称进行搜索" v-model.trim="query" />
+                    </form>
                 </div>
                 <!-- tag -->
                 <tag icon='icon-dianping' text='我的充电站'></tag>
@@ -69,7 +69,7 @@
     import NoData from 'components/no-data'
     import Scroll from 'components/scroll/scroll'
     import Loading from 'components/loading/loading'
-    import { Dialog, SwipeCell } from 'vant'
+    import { Dialog, SwipeCell, Search } from 'vant'
     export default {
         name: 'collect',
         data () {
@@ -84,7 +84,8 @@
             NoData,
             Scroll,
             Loading,
-            vanSwipeCell: SwipeCell
+            vanSwipeCell: SwipeCell,
+            vanSearch: Search
         },
         methods: {
             back () {
@@ -134,11 +135,11 @@
         }
         .search{
             &-wrapper{
-                padding:  0 5%;
+                // padding:  0 1%;
                 line-height: 2.1rem;
                 // padding: 0 1rem;
                 margin-bottom: .75rem;
-                background-color: #fff;
+                // background-color: #fff;
             }
             &-box{
                 width: 100%;

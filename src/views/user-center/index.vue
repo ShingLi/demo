@@ -73,7 +73,7 @@
                 <i class="iconfont icon-xiaoxi"></i>
                 <span>充电</span>
             </router-link>
-            <router-link to='' tag='div'>
+            <router-link to='/carwash' tag='div'>
                 <i class="iconfont icon-xiche"></i>
                 <span>洗车</span>
             </router-link>

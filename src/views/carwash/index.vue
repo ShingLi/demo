@@ -2,7 +2,7 @@
     <transition name='slide' mode='out-in'>
     <div class="charge-wrapper">
         <div class="charge-wrapper" ref='chargeWrapper' v-if='zz'>
-             <v-header title='附近电站' text='首页' @back='back' ref='header' style="z-index:9">
+             <v-header title='附近洗车机' text='首页' @back='back' ref='header' style="z-index:9">
                 <i class="iconfont icon-jiantouzuo" slot='back'></i>
             </v-header>
             <!--搜索 -->
@@ -11,7 +11,7 @@
                     <input type="text"
                         class="search"
                         v-model.trim='query'
-                        placeholder="请输入充电站名称进行搜索"
+                        placeholder="请输入洗车机名称进行搜索"
                     >
                 <router-link to='/collect' tag='div'>
                     <i class="iconfont icon-shoucang"></i>
@@ -58,7 +58,7 @@
                             </div>
                             <div class="mainOperate" @click='charge'>
                                 <div class="circle">
-                                    <i class="iconfont icon-dianping"></i>
+                                    <i class="iconfont icon-xiche"></i>
                                 </div>
                                 <span class="chongdian">充电</span>
                             </div>
