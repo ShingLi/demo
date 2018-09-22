@@ -35,5 +35,10 @@ export default [
         path: '/chart',
         name: 'chart',
         component: () => import('./chart/chart')
+    },
+    {
+        path: '/earnings',
+        name: 'earnings',
+        component: () => import('./earnings/earnings')
     }
 ]

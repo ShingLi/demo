@@ -1,7 +1,7 @@
 <template>
     <transition name='slide' mode='out-in'>
         <div class="install-wrapper">
-            <v-header title='小区管理员'
+            <v-header title='小区收益'
                 text='返回'
                 @back='back'
                 bg='agent'
@@ -14,7 +14,13 @@
                 <div class="zzzz">
                     <van-collapse v-model="activeName" accordion>
                         <template v-for='(n,index) in 20'>
-                            <van-collapse-item title="李成小区管理员" :name="index+1" icon='contact' :key='index'>
+                            <van-collapse-item
+                                title="李成小区管理员"
+                                icon='contact'
+                                :name="index+1"
+                                :key='index'
+                                value='今日收益'
+                            >
                                 <ul>
                                     <li class="item">
                                         <label for="">联系方式:</label>
@@ -46,7 +52,7 @@
     import Scroll from 'components/scroll/scroll'
     import { Collapse, CollapseItem } from 'vant'
     export default {
-        name: 'community',
+        name: 'earnings',
         data () {
             return {
                 activeName: '1'
