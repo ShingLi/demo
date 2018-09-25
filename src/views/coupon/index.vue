@@ -41,7 +41,10 @@
                             <div class='featuers'>
                                 <p class="van-ellipsis">卡号：843DA7E1FF</p>
                                 <div>
-                                    <a @click="lose">挂失</a>
+                                    <template>
+                                        <a @click="lose" v-if='isshow'>挂失</a>
+                                        <a @click="notlose" class="notlose" v-else>取消挂失</a>
+                                    </template>
                                     <a @click='unbind'>解除绑定</a>
                                 </div>
                             </div>
@@ -49,7 +52,7 @@
                     </ul>
                 </scroll>
                 <!-- 没有数据 -->
-                <no-data text='您还没有绑定卡'></no-data>
+                <no-data text='您还没有绑定卡' v-if='false'></no-data>
             </div>
         </div>
     </transition>
@@ -64,7 +67,9 @@
         name: 'coupon',
         data () {
             return {
-                query: ''
+                query: '',
+                isshow: true,
+                
             }
         },
         components: {
@@ -88,9 +93,13 @@
                     message: '确认挂失卡？'
                 }).then(() => {
                     // on confirm
+                    this.isshow = false
                 }).catch(() => {
                     // on cancel
                 })
+            },
+            notlose () {
+                this.isshow = true
             },
             unbind () {
                 Dialog.confirm({
@@ -200,10 +209,13 @@
                                         padding: 0.4rem 0;
                                         border-radius: .75rem;
                                         font-size: .6rem;
-                                        background-color: #ff6595;
+                                        background-color: #ff9330;
                                         &:last-child{
                                             background-color: #e1523f;
                                         }
+                                    }
+                                    .notlose{
+                                        background-color: #32CFAA
                                     }
                                 }
                             }

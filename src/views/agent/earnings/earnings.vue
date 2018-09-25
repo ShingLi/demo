@@ -16,29 +16,42 @@
                         <template v-for='(n,index) in 20'>
                             <van-collapse-item
                                 title="李成小区管理员"
-                                icon='contact'
                                 :name="index+1"
                                 :key='index'
-                                value='今日收益'
                             >
-                                <ul>
-                                    <li class="item">
-                                        <label for="">联系方式:</label>
-                                        <p>13866353457</p>
-                                    </li>
-                                    <li class="item">
-                                        <label for="">电子邮箱:</label>
-                                        <p>745573545@qq.com</p>
-                                    </li>
-                                    <li class="item">
-                                        <label for="">公司名称:</label>
-                                        <p>13866353457</p>
-                                    </li>
-                                    <li class="item">
-                                        <label for="">小区地点:</label>
-                                        <p>13866353457</p>
-                                    </li>
-                                </ul>
+                                <i class="iconfont icon-yue" slot='icon'></i>
+                                <span slot='value'>今日收益<strong>￥0</strong></span>
+                                <!-- 折叠部分内容 -->
+                                <div class='group'>
+                                    <p class="group-item">
+                                        <span>投币支付</span>
+                                        <span>刷卡支付</span>
+                                    </p>
+                                    <p class="group-item">
+                                        <b>￥0</b>
+                                        <b>￥0</b>
+                                    </p>
+                                </div>
+                                <div class='group'>
+                                    <p class="group-item">
+                                        <span>手机支付</span>
+                                        <span>虚拟卡支付</span>
+                                    </p>
+                                    <p class="group-item">
+                                        <b>￥0</b>
+                                        <b>￥0</b>
+                                    </p>
+                                </div>
+                                <div class='group'>
+                                    <p class="group-item">
+                                        <span>本月收益</span>
+                                        <span>上月收益</span>
+                                    </p>
+                                    <p class="group-item">
+                                        <b>￥0</b>
+                                        <b>￥0</b>
+                                    </p>
+                                </div>
                             </van-collapse-item>
                         </template>
                     </van-collapse>
@@ -55,7 +68,8 @@
         name: 'earnings',
         data () {
             return {
-                activeName: '1'
+                activeName: '1',
+                communityInfo: {}
             }
         },
         components: {
@@ -92,6 +106,35 @@
                     margin:0 .7rem;
                     padding-top: .7rem;
                     padding-bottom: .7rem;
+                    .iconfont {
+                        font-size: 1rem;
+                        margin-right: .4rem;
+                        color:#f5c026;
+                    }
+                    strong{
+                        color:#EC658B;
+                    }
+                    .group{
+                        display: flex;
+                        flex-flow: column;
+                        justify-content: space-between;
+                        padding-top:.3rem;
+                        &:first-child{
+                            padding-top: 0;
+                        }
+                        &-item{
+                            display: flex;
+                            justify-content: space-between;
+                            line-height:25px;
+                            color:$color-text-d;
+                            span{
+                                font-size: .7rem;
+                            }
+                            b{
+                                color:#EC658B;
+                            }
+                        }
+                    }
                 }
                 .item{
                     display: flex;

@@ -18,6 +18,7 @@ $color-background-line:linear-gradient(#40e399, #26bfb7);
     bottom:0;
     background-color: $color-background-d;
     z-index: 99;
+    // max-width: 750px;
 }
 // 背景图的2X 3X
 @mixin bg-image ($url) {
@@ -36,5 +37,13 @@ $color-background-line:linear-gradient(#40e399, #26bfb7);
         line-height: 0;
         clear: both;
         visibility: hidden;
+    }
+}
+//  PC浏览
+.fixed {
+    @media (min-width: 750px){
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 750px;
     }
 }
