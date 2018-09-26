@@ -11,13 +11,6 @@
             <!-- bindcard -->
             <div class="search-wrapper">
                 <label>绑定新卡</label>
-                <!-- <input
-                    type="text"
-                    class="search-box"
-                    placeholder="请输入10位卡号"
-                    v-model.trim='query'
-                    maxlength="10"
-                /> -->
                 <form action="/">
                     <van-search
                         class="search-box"
@@ -33,19 +26,19 @@
                 <!-- 卡号列表 -->
                 <scroll class="scroll" v-if='true'>
                     <ul class="card-list">
-                        <li class="card-item" v-for='(n,index) in 20' :key='index'>
+                        <li class="card-item" v-for='card in cardList' :key='card.id'>
                             <div class="time">
                                 <label for="">绑定时间：</label>
-                                <p>2018-08-30 09:57:25</p>
+                                <p>{{card.inTime}}</p>
                             </div>
                             <div class='featuers'>
-                                <p class="van-ellipsis">卡号：843DA7E1FF</p>
+                                <p class="van-ellipsis">卡号：{{card.userCardId}}</p>
                                 <div>
                                     <template>
-                                        <a @click="lose" v-if='isshow'>挂失</a>
+                                        <a @click="lose(card.userCardId)" v-if='!card.state'>挂失</a>
                                         <a @click="notlose" class="notlose" v-else>取消挂失</a>
                                     </template>
-                                    <a @click='unbind'>解除绑定</a>
+                                    <a @click='unbind(card.userCardId)'>解除绑定</a>
                                 </div>
                             </div>
                         </li>
@@ -68,8 +61,26 @@
         data () {
             return {
                 query: '',
-                isshow: true,
-                
+                cardList: [
+                    {
+                        id: 1,
+                        inTime: '2018-09-25 17:16:32',
+                        userCardId: '57FDC32A43',
+                        state: 0
+                    },
+                    {
+                        id: 2,
+                        inTime: '2018-09-23 19:16:32',
+                        userCardId: '123sfsfxg48',
+                        state: 1
+                    },
+                    {
+                        id: 3,
+                        inTime: '2018-09-16 03:16:32',
+                        userCardId: '285FD32A43',
+                        state: 0
+                    }
+                ]
             }
         },
         components: {
@@ -87,10 +98,10 @@
                 // 扫描卡号
                 Toast(1)
             },
-            lose () {
+            lose (userCardId) {
                 Dialog.confirm({
                     title: '',
-                    message: '确认挂失卡？'
+                    message: `确认挂失卡？${userCardId}`
                 }).then(() => {
                     // on confirm
                     this.isshow = false
@@ -99,12 +110,19 @@
                 })
             },
             notlose () {
-                this.isshow = true
-            },
-            unbind () {
                 Dialog.confirm({
                     title: '',
-                    message: '确认解除绑定卡：843DA7E1FF？'
+                    message: `确认取消挂失卡？`
+                }).then(() => {
+                    // on confirm
+                }).catch(() => {
+                    // on cancel
+                })
+            },
+            unbind (userCardId) {
+                Dialog.confirm({
+                    title: '',
+                    message: `确认解除绑定卡：${userCardId}？`
                 }).then(() => {
                     // on confirm
                 }).catch(() => {

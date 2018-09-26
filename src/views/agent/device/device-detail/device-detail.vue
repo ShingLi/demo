@@ -93,7 +93,7 @@
                     show-toolbar
                     @cancel='versionPopup = false'
                     @confirm = 'onConfirm'
-                ></van-picker>
+                />
             </van-popup>
         </div>
     </transition>
