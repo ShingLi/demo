@@ -57,7 +57,7 @@
                     <h4 class="title">设备管理</h4>
                     <p class="desc">点击进入管理您的设备</p>
                 </router-link>
-                <router-link tag='div' to='' class="item">
+                <router-link tag='div' to='/order' class="item">
                     <div class="icon-wrapper z2">
                         <svg class="icon icon-dingdanchaxun" aria-hidden="true"><use xlink:href="#icon-dingdanchaxun"></use></svg>
                     </div>

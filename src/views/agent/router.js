@@ -1,4 +1,5 @@
 import device from './device/router'
+import order from './order-list/router'
 export default [
     {
         path: '/agent-index',
@@ -40,5 +41,6 @@ export default [
         path: '/earnings',
         name: 'earnings',
         component: () => import('./earnings/earnings')
-    }
+    },
+    ...order
 ]
