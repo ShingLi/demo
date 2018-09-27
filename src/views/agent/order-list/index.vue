@@ -8,10 +8,7 @@
             >
                 <i class="iconfont icon-jiantouzuo" slot='back'></i>
             </v-header>
-            <div class="main">
-                <router-view/>
-            </div>
-            <div class="footer">
+            <!-- <div class="footer">
                 <router-link tag='a' to='' class="anchor">
                     <i class="iconfont icon-qian"></i>
                     <span>投币</span>
@@ -28,16 +25,52 @@
                     <i class="iconfont icon-iconset0451"></i>
                     <span>虚拟卡</span>
                 </router-link>
-            </div>
+            </div> -->
+             <tab :line-width=2
+                    active-color='#fc378c'
+                    v-model="index">
+                <tab-item
+                    class="vux-center"
+                    v-for="(item, index) in tabName"
+                    :selected="currentVal === item"
+                    :key="index"
+                    @click="currentVal = item"
+                >{{item}}</tab-item>
+            </tab>
+            <swiper
+                height="100px"
+                v-model="index"
+                :show-dots="false"
+            >
+                <swiper-item
+                    v-for="(item, index) in tabName"
+                    :key="index"
+                >
+
+                </swiper-item>
+            </swiper>
         </div>
     </transition>
 </template>
 <script>
     import vHeader from 'components/header'
+    import { Tab, TabItem, Swiper, SwiperItem } from 'vux'
+    const list = () => ['投币', '刷卡', '手机', '虚拟卡']
     export default {
         name: 'order',
         components: {
-            vHeader
+            vHeader,
+            Tab,
+            TabItem,
+            Swiper,
+            SwiperItem
+        },
+        data () {
+            return {
+                index: 0,
+                tabName: list(),
+                currentVal: '投币'
+            }
         },
         methods: {
             back () {
@@ -50,37 +83,37 @@
     @import '~styles/variables.scss';
     .order-list{
         @include fixed;
-        .main{
-            position: absolute;
-            top:2.2rem;
-            left: 0;
-            width: 100%;
-            bottom: 50px;
-            overflow: hidden;
-        }
-        .footer{
-            position: fixed;
-            left: 0;
-            width: 100%;
-            bottom: 0;
-            display: flex;
-            background-color: #fff;
-            .anchor{
-                flex:1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                height: 50px;
-                text-align: center;
-                i{
-                    font-size: 25px;
-                }
-                span{
-                    display: block;
-                    margin-top: 5px;
-                    font-size: 10px;
-                }
-            }
-        }
+        // .main{
+        //     position: absolute;
+        //     top:2.2rem;
+        //     left: 0;
+        //     width: 100%;
+        //     bottom: 50px;
+        //     overflow: hidden;
+        // }
+        // .footer{
+        //     position: fixed;
+        //     left: 0;
+        //     width: 100%;
+        //     bottom: 0;
+        //     display: flex;
+        //     background-color: #fff;
+        //     .anchor{
+        //         flex:1;
+        //         display: flex;
+        //         flex-direction: column;
+        //         justify-content: center;
+        //         height: 50px;
+        //         text-align: center;
+        //         i{
+        //             font-size: 25px;
+        //         }
+        //         span{
+        //             display: block;
+        //             margin-top: 5px;
+        //             font-size: 10px;
+        //         }
+        //     }
+        // }
     }
 </style>
