@@ -150,7 +150,7 @@
                 {
                     icon: 'icon-cheliangxinxi',
                     text: '车位订单',
-                    url: ''
+                    url: '/myorder'
                 },
                 {
                     icon: 'icon-cheliangguanli-',
@@ -160,7 +160,7 @@
                 {
                     icon: 'icon-xingchezhinan',
                     text: '车位绑定',
-                    url: ''
+                    url: '/bindcarbarn'
                 },
                 {
                     icon: 'icon-yingyongchengxu',

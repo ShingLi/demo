@@ -9,14 +9,19 @@
             >
                 <i class="iconfont icon-jiantouzuo" slot='back'></i>
             </v-header>
-            <div class="search-wrapper">
+            <form action="/">
+                <van-search placeholder="请输入设备编号进行搜索"
+                v-model="sn"
+            />
+            </form>
+            <!-- <div class="search-wrapper">
                 <input type="text"
                     class="search-box"
                     placeholder="请输入设备编号进行搜索"
                     :model='sn'
                 >
                 <p class="device-total">当前设备总数: 3</p>
-            </div>
+            </div> -->
             <!-- tab -->
             <van-tabs v-model="active" swipeable>
                 <template v-for='(tab,index) of statusList'>
@@ -66,9 +71,15 @@
 </template>
 <script>
     import vHeader from 'components/header'
-    import { Tab, Tabs } from 'vant'
+    import { Tab, Tabs, Search } from 'vant'
     export default {
         name: 'device',
+        components: {
+            vHeader,
+            vanTabs: Tabs,
+            vanTab: Tab,
+            vanSearch: Search
+        },
         data () {
             return {
                 active: 0,
@@ -84,11 +95,6 @@
                     }
                 ]
             }
-        },
-        components: {
-            vHeader,
-            vanTabs: Tabs,
-            vanTab: Tab
         },
         methods: {
             back () {

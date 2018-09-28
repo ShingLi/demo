@@ -10,6 +10,8 @@ import pay from 'views/pay/router'
 import carbarn from 'views/carbarn/router'
 import carwash from 'views/carwash/router'
 import installEquipment from 'views/install-equipment/router'
+import order from 'views/order/router'
+import bindcarbarn from 'views/bind-carbarn/router'
 // 代理商
 
 import agent from 'views/agent/router'
@@ -96,7 +98,9 @@ const routes = [
     ...carbarn,
     ...carwash,
     ...agent,
-    ...installEquipment
+    ...installEquipment,
+    ...order,
+    ...bindcarbarn
 ]
 
 export default new Router({

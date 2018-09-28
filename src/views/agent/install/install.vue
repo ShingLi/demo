@@ -22,16 +22,16 @@
     // import { Collapse, CollapseItem } from 'vant'
     export default {
         name: 'install',
-        data () {
-            return {
-                activeName: '1'
-            }
-        },
         components: {
             vHeader,
             Scroll
             // vanCollapse: Collapse,
             // vanCollapseItem: CollapseItem
+        },
+        data () {
+            return {
+                activeName: '1'
+            }
         },
         methods: {
             back () {
