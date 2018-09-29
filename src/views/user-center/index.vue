@@ -57,7 +57,7 @@
             <tag text='我的车位' icon='icon-tingchechang'></tag>
             <ul>
                 <template v-for='(item,index) in carHandle'>
-                    <li class="module" :key='index' @click='href(index)'>
+                    <li class="module" :key='index' @click='src(item.status)'>
                         <router-link :to='`${item.url}`' class="_a">
                             <i class="iconfont" :class="item.icon"></i>
                             <!-- badge -->
@@ -92,6 +92,7 @@
 <script>
     import vHeader from 'components/header'
     import Tag from 'components/tag'
+    import { Toast } from 'vant'
     export default {
         name: 'user-center',
         metaInfo: {
@@ -152,17 +153,18 @@
                     text: '车位订单',
                     url: '/myorder'
                 },
-                {
-                    icon: 'icon-cheliangguanli-',
-                    text: '车位续费',
-                    url: ''
-                },
+                // {
+                //     icon: 'icon-cheliangguanli-',
+                //     text: '车位续费',
+                //     url: ''
+                // },
                 {
                     icon: 'icon-xingchezhinan',
                     text: '车位绑定',
                     url: '/bindcarbarn'
                 },
                 {
+                    status: 'disabled',
                     icon: 'icon-yingyongchengxu',
                     text: '查看更多',
                     url: ''
@@ -178,11 +180,12 @@
                 if (index === 6) {
                     window.location.href = 'tel:18955310567'
                 }
+            },
+            src (status) {
+                if (status) {
+                    Toast('该功能正在完善中~~')
+                }
             }
-        },
-        mounted () {
-            console.log(window.location.search)
-            console.log(this.$route)
         }
     }
 </script>

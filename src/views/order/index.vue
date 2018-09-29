@@ -6,9 +6,7 @@
                 title='我的订单'
                 @back='back'
             >
-                <div slot='back'>
-                    <i class="iconfont icon-jiantouzuo"></i>
-                </div>
+                <i class="iconfont icon-jiantouzuo" slot='back'></i>
             </v-header>
             <Scroll class="scroll">
                 <van-cell-group class="top">
@@ -22,6 +20,8 @@
                     </van-cell>
                 </van-cell-group>
             </Scroll>
+            <!-- 子路由 -->
+            <router-view/>
         </div>
     </transition>
 </template>

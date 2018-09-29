@@ -15,7 +15,7 @@
                 <!-- tag -->
                 <tag icon='icon-dianping' text='我的充电站'></tag>
                 <!-- 充电站列表 -->
-                <scroll class="scroll">
+                <scroll class="scroll" v-if='false'>
                     <div class="device-list">
                         <ul>
                             <template v-for='n in 20'>
@@ -59,7 +59,7 @@
                 <!-- <loading :width='200' :height='200'></loading> -->
             </div>
             <!-- 没有数据的显示 -->
-            <no-data data='您还没有收藏任何设备' v-if='false'></no-data>
+            <no-data data='您还没有收藏任何设备' v-if='true'></no-data>
         </div>
     </transition>
 </template>
