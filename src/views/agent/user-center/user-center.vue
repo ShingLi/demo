@@ -1,7 +1,7 @@
 <template>
     <transition name='slide' mode="out-in">
         <div class="agent-center">
-            <v-header title='代理商'
+            <v-header title='个人中心'
                 text='返回'
                 @back='back'
                 bg='agent'
@@ -15,9 +15,16 @@
                         is-link
                         to='/pwd'
                     >
-                    <svg class="icon icon-zhanghu blueColor" aria-hidden="true" slot='icon'>
-                        <use xlink:href="#icon-zhanghu"></use>
-                    </svg>
+                        <svg class="icon icon-zhanghu" aria-hidden="true" slot='icon'>
+                            <use xlink:href="#icon-zhanghu"></use>
+                        </svg>
+                    </van-cell>
+                     <van-cell
+                        title="绑定银行卡"
+                        is-link
+                        to='/bind-card'
+                    >
+                        <i class="icon iconfont icon-qia" slot='icon' style='font-size:19px;'></i>
                     </van-cell>
                     <van-cell
                         title="添加小区管理员"

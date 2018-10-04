@@ -42,5 +42,10 @@ export default [
         name: 'earnings',
         component: () => import('./earnings/earnings')
     },
-    ...order
+    ...order,
+    {
+        path: '/bind-card',
+        name: 'bind-card',
+        component: () => import('./bind-card')
+    }
 ]
