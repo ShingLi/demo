@@ -21,7 +21,7 @@
                                 <span slot='title'>小区地址：广告产业园</span>
                                 <van-icon
                                     style="font-size:18px"
-                                    name="edit"
+                                    name="add-o"
                                     slot='right-icon'
                                     @click.stop='edit'
                                 />
@@ -123,6 +123,9 @@
                 }
             },
             confirm () {
+                if (!Object.keys(this.form).length) {
+                    return
+                }
                 let { username, number } = this.form
             },
             onClose (id) {
