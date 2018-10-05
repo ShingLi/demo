@@ -124,9 +124,10 @@
             },
             confirm () {
                 if (!Object.keys(this.form).length) {
+                    Toast('您输入的内容不能为空！')
                     return
                 }
-                let { username, number } = this.form
+                this._postform()
             },
             onClose (id) {
                 // 右滑删除
@@ -148,6 +149,9 @@
                         break
                     }
                 }
+            },
+            _postform () {
+                // 发送到后端
             }
         }
     }
