@@ -1,71 +1,27 @@
+
 import axios from 'axios'
 import qs from 'qs'
-import {
-    Toast
-} from 'vant'
+import Store from 'store'
+import { Toast } from 'vant'
+axios.defaults.timeout = 5000
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
+axios.defaults.baseURL = (process.env.NODE_ENV === 'development' ? '' : '')
 
-let cancel = {}
-let promiseArr = {}
-const CancelToken = axios.CancelToken
-axios.interceptors.request.use(config => {
-    if (promiseArr[config.url]) {
-        promiseArr[config.url]('操作取消')
-        promiseArr[config.url] = cancel
-    } else {
-        promiseArr[config.url] = cancel
-    }
-}, error => {
-    return Promise.reject(error)
-})
-
-axios.interceptors.response.use(response => {
-    return response
-}, error => {
-    if (error && error.response) {
-        switch (error.response.normal) {
-        case 404:
-            Toast.fail('请重新授权')
+axios.interceptors.request.use(
+    (config) => {
+        if (config.method === 'post' || config.method === 'put') {
+            config.data = qs.parse(config.data, {arrayFormat: 'brackets'})
         }
-    }
-    return Promise.resolve(error.response)
-})
-
-axios.defaults.baseURL = '/api/'
-axios.defaults.headers = {
-    'X-Requested-With': 'XMLHttpRequest'
-}
-axios.defaults.timeout = 10000
-
-export default {
-    // get请求
-    get (url, param) {
-        return new Promise((resolve, reject) => {
-            axios({
-                method: 'get',
-                url,
-                params: param,
-                cancelToken: new CancelToken(c => {
-                    cancel = c
-                })
-            }).then(res => {
-                resolve(res)
+        config.params = (
+            Object.assign((config.params ? config.params : ''), {
+                'openid': Store.state.openid
             })
-        })
+        )
+        return config
     },
-    // post请求
-    post (url, data) {
-        console.log(url)
-        return new Promise((resolve, reject) => {
-            axios({
-                method: 'post',
-                url,
-                data: qs.stringify(data)
-                // cancelToken: new CancelToken(c => {
-                //     cancel = c
-                // })
-            }).then(res => {
-                resolve(res)
-            })
-        })
+    (error) => {
+        Toast('非法输入')
+        return Promise.reject(error)
     }
-}
+)
+export default axios

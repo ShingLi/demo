@@ -1,26 +1,13 @@
-// import router from './router'
-// import Store from './store'
+import Router from './router'
+import Store from './store'
 
-// import {
-//     getOpenId
-// } from 'utils/auth'
+const appID = 'wx2dcb70b67b8b1b96'
+const URL = encodeURIComponent('http://www.opjpg.com/WX/index.php/san/index/shouquan')
 
-// router.beforeEach((to, from, next) => {
-//     const token = window.localStorage.getItem('user_token')
-//     if (token) {
-//         if (to.path === '/author') {
-//             next({
-//                 path: '/'
-//             })
-//         } else {
-//             // 拉取用户信息
-//         }
-//     } else {
-//         if (to.path !== '/author') {
-//             window.localStorage.setItem('authUrl', to.fullPath)
-//             // 调用后端的接口获取后端跳转授权的地址
-//         } else {
-//             next()
-//         }
-//     }
-// })
+Router.beforeEach((to, from, next) => {
+    if (Store.state.openid) {
+        next()
+    } else {
+        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appID}&redirect_uri=${URL}&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect`
+    }
+})

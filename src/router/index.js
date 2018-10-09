@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
+import index from 'views/r/router'
+
 import userCenter from 'views/user-center'
 import about from 'views/about/router'
 import coupon from 'views/coupon/router'
@@ -18,12 +21,7 @@ import agent from 'views/agent/router'
 Vue.use(Router)
 
 const routes = [
-    {
-        path: '/',
-        redirect: {
-            path: 'userCenter'
-        }
-    },
+    ...index,
     {
         path: '/balance',
         name: 'balance',
