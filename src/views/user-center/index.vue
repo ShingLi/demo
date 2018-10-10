@@ -93,15 +93,25 @@
     import vHeader from 'components/header'
     import Tag from 'components/tag'
     import { Toast } from 'vant'
+    import { mapState } from 'vuex'
     export default {
         name: 'user-center',
         metaInfo: {
             title: '摩灿智能'
         },
+        components: {
+            vHeader,
+            Tag
+        },
         data () {
             return {
                 avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80'
             }
+        },
+        computed: {
+            ...mapState([
+                'openid'
+            ])
         },
         created () {
             this.title = '个人中心'
@@ -170,10 +180,7 @@
                     url: ''
                 }
             ]
-        },
-        components: {
-            vHeader,
-            Tag
+            Toast(`您的openid 是 ${this.openid}`)
         },
         methods: {
             href (index) {

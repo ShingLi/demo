@@ -193,7 +193,7 @@
             // filter:blur(10px);
             // background: rgba(7, 17, 27, 0.4);
             .loc-city{
-                font-size: .8rem;
+                font-size: .6rem;
             }
             .search{
                 flex:1;

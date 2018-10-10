@@ -11,3 +11,4 @@ Router.beforeEach((to, from, next) => {
         window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appID}&redirect_uri=${URL}&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect`
     }
 })
+// http://xytest.natapp1.cc/#/home/openid/usercenter
